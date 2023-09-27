@@ -1,77 +1,20 @@
 //1
-function saludar(name) {
-    console.log(name);
-}
-saludar("pepe")
-const saludarAF = (name) =>{
-    console.log(name);
-}
-saludarAF("pepe")
+const listaCompra  = ["peras", "manzanas", "kiwis", "platanos", "mandarinas"]
 
+console.log(listaCompra.splice(listaCompra.indexOf("manzanas"),1));
+console.log(listaCompra);
 
-//2 
-const potencia = (base = 5, exponente = 2) =>{
-    return Math.pow(base, exponente);
-}
+console.log(listaCompra.splice(listaCompra.indexOf("platanos"),0,"naranjas", "sandia"));
+console.log(listaCompra);
 
-console.log(potencia(2));
+console.log(listaCompra.splice(listaCompra.indexOf("kiwis"),1,"cerezas", "nisperos"));
+console.log(listaCompra);
 
-//3
-const aplica_fn = (numero, funcion) =>{
-    return funcion(numero);
-}
+//2
+const arrayNumeros = [2,4,6,8];
 
-console.log(aplica_fn(2,potencia));
+const copia = arrayNumeros.slice()
 
-//4
-
-let  principal=  [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-console.log(principal.filter((numero) => numero%2 == 0)); //se le pasa directamente una funcion con un argumento
-
-console.log(principal.map(number => number*number));
-
-console.log(principal.reduce((total,number) => total += number ));
-
-console.log(principal.every((number) => number > 0));
-
-console.log(principal.some((number) => number>10));
-
-//5
-const persona = {
-    nombre: "Juan",
-    edad: 30,
-    direccion: {
-      calle: "Calle Principal",
-      ciudad: "Ciudad"
-    }
-  };
-
-persona2 = {...persona};
-console.log(persona.edad);
-persona2.edad = 2;
-console.log(persona.edad);
-
-console.log(persona.calle);
-persona2.calle = "calle escopeta";
-console.log(persona.calle);
-
-//6 
-const arrayPruebas = [1, 2, 3, 4, 5];
-
-let  [a,b,c,d,e] = arrayPruebas;
-console.log(a);
-
-const persona3 = { nombre: "Alice", edad: 25 }
-
-let  {nombre, edad} = persona3;
-console.log(nombre);  
-
-//7
-
-const nombres = ["Ana", "Juan", "Luis", "Ana", "Luis", "María"];
-
-let noRepetidos = new Set(nombres);
-console.log(noRepetidos);
-let arrayNoRepes =  Array.from(noRepetidos);
-console.log(arrayNoRepes);
+copia[0] = 20;
+console.log(arrayNumeros);
+console.log(copia);
