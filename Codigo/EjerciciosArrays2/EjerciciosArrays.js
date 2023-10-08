@@ -48,7 +48,7 @@ const persona = {
     }
   };
 
-persona2 = {...persona };
+let  persona2 = JSON.parse(JSON.stringify(persona));
 console.log(persona.edad);
 persona2.edad = 2;
 console.log(persona.edad);
@@ -76,3 +76,4 @@ let noRepetidos = new Set(nombres);
 console.log(noRepetidos);
 let arrayNoRepes =  Array.from(noRepetidos);
 console.log(arrayNoRepes);
+
