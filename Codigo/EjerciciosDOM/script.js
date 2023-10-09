@@ -69,9 +69,11 @@ console.log("3");
 console.log(div1.textContent);
 
 console.log("4");
-let campoTexto = document.querySelector("input[type = text");
+const campoTexto = document.querySelector("input[type = text");
 
 console.log("5");
+console.log(campoTexto.value);
+console.log("6");
 console.log(document.getElementsByName("sexo")[0].parentElement.innerHTML);
 
 console.log(document.getElementsByName("sexo")[0].parentElement.textContent);
