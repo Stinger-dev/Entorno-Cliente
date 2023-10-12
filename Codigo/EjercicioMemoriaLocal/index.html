@@ -7,7 +7,29 @@
     <style>
         input[type="button"]{
             margin-inline: 5px;
+            margin-bottom: 0px;
         }
+        .oculto{
+            display: none;
+        }
+
+        body{
+            scrollbar-gutter: stable;
+        }
+        form{
+            text-align: center;
+        }
+        form label{
+            filter: brightness(90%);
+        }
+        input[type ="text"]:hover, input[type ="email"]:hover{
+            filter: brightness(150%);
+        }
+        li{
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        /* Esto son solo modificaciones minimas sobre el html dado, para que me de un poco menos de TOC */       
   
     </style>
 </head>
@@ -21,6 +43,7 @@
             <input type="email" id="email" name="email" required>
             <br>
         <button type="submit" id="submitButton">Agregar usuario</button>
+        <button type="submit" id="modButton" class="oculto">Modificar</button>
     </form>
 
       <h2>Lista de Usuarios</h2>

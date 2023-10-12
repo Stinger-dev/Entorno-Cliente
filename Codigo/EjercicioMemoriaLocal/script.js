@@ -3,7 +3,8 @@ const htmlForm = document.getElementById("userForm");
 const inputEmail = document.getElementById("email");
 const inputName = document.getElementById("name");
 const inputaddress = document.getElementById("address");
-
+const modButton = document.getElementById("modButton");
+const addButton = document.getElementById("submitButton");
 
 // localStorage.setItem("users",JSON.stringify([{"nombre":"Gonzalo", "direccion":"calle escopeta", "email":"123@g.com"}, {"nombre":"Joseju", "direccion": "brenes", "email":"suJosejuRechulon@hotmail.com"}, {"nombre":"joaquin", "direccion": "brenes", "email":"XxBrasileiroxX@yahoo.es"}]));
 
@@ -16,6 +17,7 @@ const alreadyAdded = (user) =>{
     }
     return false;
 }
+
 const removeUserHtml = (user) =>{
     user.parentElement.remove();
 }
@@ -48,6 +50,8 @@ const addUser = (userObj) =>{
     tmpEditButon.addEventListener("click", (e)=>{
         removeUserHtml(e.target);
         removeUserMemory(userObj);
+        addButton.classList.add("oculto");
+        modButton.classList.remove("oculto")
 
         inputName.value = userObj.nombre;
         inputaddress.value = userObj.direccion;
@@ -56,9 +60,7 @@ const addUser = (userObj) =>{
     tmpLi.appendChild(tmpEditButon);
     
     htmlUserList.appendChild(tmpLi);
-    
-
-    //Verificamos que el usuario no exista en el aray  
+    //Verificamos que el usuario no exista en el array, asi no nos da fallo a la hora de recuperar los datos de la memoria local
     if(!alreadyAdded(userObj)){
         users.push(userObj);
         localStorage.setItem("users",JSON.stringify(users));
@@ -66,11 +68,15 @@ const addUser = (userObj) =>{
 }
 
 const initUsers = (usersList) =>{
+    //Metodo auxiliar para inicializar todos los usuarios que estaban en la memoria local
     usersList.forEach(element => {
         addUser(element);
     });
 }
 
+
+//Recuperamos los datos de la memoria local, en caso de que no sea null, hacemos un parse del JSON y llamamos a initUsers
+//En caso de que sea null, inicializamos el array con el que trabajaremos y avisamos por la consola
 let users = localStorage.getItem("users");
 if(users != null){
     users = JSON.parse(users);
@@ -80,6 +86,11 @@ if(users != null){
     console.log("Memoria vacia");
 }
 
+const resetInputs = ()=>{
+    inputName.value = "";
+    inputaddress.value = "";
+    inputEmail.value = "";
+}
 
 htmlForm.addEventListener("submit", (event) =>{
     event.preventDefault();
@@ -89,7 +100,11 @@ htmlForm.addEventListener("submit", (event) =>{
     }else{
         alert("Añadido un usuario que ya existia");
     }
-    inputName.value = "";
-    inputaddress.value = "";
-    inputEmail.value = "";
+
+    if(!modButton.classList.contains("oculto")){
+        modButton.classList.add("oculto");
+        addButton.classList.remove("oculto");
+    }
+
+    resetInputs();
 })
